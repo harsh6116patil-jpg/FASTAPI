@@ -15,18 +15,18 @@ def create_todo(todo:Todo):
     return {"message":"Todo added",
             "data" : todo}
 
-@app.get("/get_todos")
+@app.get("/todos")
 def see_todos():
     return todos
 
-@app.get("/get_todos/{user_id}")
+@app.get("/todos/{user_id}")
 def see_todo_id(user_id:int):
     for i in todos :
         if i.id == user_id:
             return i
     return {"Error" : "todo not found"}
 
-@app.put("/update_todo/{todo_id}")
+@app.put("/todos/{todo_id}")
 def update_todo(updated_todo:Todo,todo_id:int):
     for index,i in enumerate(todos):
         if i.id == todo_id :
@@ -35,7 +35,7 @@ def update_todo(updated_todo:Todo,todo_id:int):
                     "data" : updated_todo}
     return {"error":"Data not found"}
 
-@app.delete("/delete_todo/{todo_id}")
+@app.delete("/todos/{todo_id}")
 def delete_todo(todo_id:int):
     for index,i in enumerate(todos):
         if i.id == todo_id:
